@@ -1,0 +1,101 @@
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<div data-ng-controller="TodosController">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">PROGRESS TRACKER</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+
+					<li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/register">Register</a>
+                    </li>
+
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/todos/create">ADD SPEECH</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/todos">TODOs</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
+                    </li>                   
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <section data-ng-init="findOne()" class="container">
+		<h1>Edit Todo</h1>
+		<form data-ng-submit="update()" novalidate class="form-signin">
+			<div>
+				<label for="title" class="sr-only">Title</label>
+				<div>
+					<input type="text" data-ng-model="todo.title" id="title" placeholder="Title" required autofocus class="form-control">
+				</div>
+			</div>
+
+			<div>
+                <label for="manual" class="sr-only">Manual</label>
+                <div>
+                    <!--<input type="text" data-ng-model="manual" id="manual" placeholder="Speech Manual" required autofocus class="form-control">-->
+                    <select data-ng-model="todo.manual" id="manual" placeholder="Speech Manual">
+                      <option value="Competent Communication">Competent Communication</option>
+                      <option value="Communicating on Television">Communicating on Television</option>
+                    </select>
+                </div>
+            </div>
+			
+            <div>
+                <label for="speechNumber" class="sr-only">Speech Number</label>
+                <div>
+                    <input type="text" data-ng-model="todo.speechNumber" id="number" placeholder="Speech Number" required autofocus class="form-control">
+                </div>
+            </div>
+
+            <div>
+                <label for="completedDate" class="sr-only">Completed Date</label>
+                <p class="input-group">
+                  <input type="text" class="form-control" uib-datepicker-popup data-ng-model="todo.completedDate" id="completedDate" placeholder="Date Completed" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+            </div>
+
+			<div>
+				<label for="comment" class="sr-only">Comment</label>
+				<div>
+					<textarea data-ng-model="todo.comment" id="comment" cols="30" rows="10" placeholder="Comment" class="form-control"></textarea>
+				</div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-lg btn-primary btn-block">Update TODO</button>
+			</div>
+			<div data-ng-show="error">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</form>
+	</section>
+</div>

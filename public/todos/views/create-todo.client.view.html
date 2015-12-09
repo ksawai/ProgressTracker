@@ -1,0 +1,102 @@
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<div data-ng-controller="TodosController">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">PROGRESS TRACKER</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+
+					<li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="!authentication.user">
+                        <a href="/register">Register</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/#!/todos">VIEW PROGRESS</a>
+                    </li>
+                    <li class="page-scroll" data-ng-show="authentication.user">
+                        <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <section class="container">
+		<h1>New Speech</h1>
+		<form class="form-signin" data-ng-submit="create()" novalidate>
+			<div>
+				<label for="title" class="sr-only">Title</label>
+				<div>
+					<input type="text" data-ng-model="title" id="title" placeholder="Speech Title" required autofocus class="form-control">
+				</div>
+			</div>
+
+            <div>
+                <label for="manual" class="sr-only">Manual</label>
+                <!--<select data-ng-model="manual" id="manual" placeholder="Speech Manual">
+                  <option value="Competent Communication">Competent Communication</option>
+                  <option value="Communicating on Television">Communicating on Television</option>
+                </select>-->
+                <label for="manual">Select a Manual:</label>
+                <select data-ng-model="manual" id="manual" placeholder="Speech Manual">
+                    <option ng-repeat="option in availableManuals.manualOptions" value="{{option.name}}">{{option.name}}</option>
+                </select>
+                <!--<select name="manual" id="manual" ng-options="option.name for option in availableManuals.manualOptions track by option.id" data-ng-model="manual" value={{option.name}}></select>
+                <div>Manual={{manual}}</div>
+                <div>Manual Name={{manual.name}}</div>-->
+            </div>
+
+            <div>
+                <label for="speechNumber" class="sr-only">Speech Number</label>
+                <div>
+                    <input type="text" data-ng-model="speechNumber" id="speechNumber" placeholder="Speech Number" required autofocus class="form-control">
+                </div>
+            </div>
+
+            <div>
+                <label for="completedDate" class="sr-only">Completed Date</label>
+                <p class="input-group">
+                  <input type="text" class="form-control" uib-datepicker-popup data-ng-model="completedDate" id="completedDate" placeholder="Date Completed" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+            </div>
+
+			<div>
+				<label for="comment" class="sr-only">Comment</label>
+				<div>
+					<textarea data-ng-model="comment" id="comment" cols="30" rows="10" placeholder="Comments" class="form-control"></textarea>
+				</div>
+			</div>
+
+			<div>
+				<button type="submit" class="btn btn-lg btn-primary btn-block">Add Speech</button>
+			</div>
+			<div data-ng-show="error">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</form>
+	</section>
+</div>
