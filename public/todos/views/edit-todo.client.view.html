@@ -34,7 +34,7 @@
                         <a href="/#!/todos/create">ADD SPEECH</a>
                     </li>
                     <li class="page-scroll" data-ng-show="authentication.user">
-                        <a href="/#!/todos">TODOs</a>
+                        <a href="/#!/todos">VIEW PROGRESS</a>
                     </li>
                     <li class="page-scroll" data-ng-show="authentication.user">
                         <a href="/logout">Hello <span data-ng-bind="authentication.user.name" data-ng-show="authentication.user"></span>, Logout?</a>
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<div>
-				<button type="submit" class="btn btn-lg btn-primary btn-block">Update TODO</button>
+				<button type="submit" class="btn btn-lg btn-primary btn-block">Update Speech</button>
 			</div>
 			<div data-ng-show="error">
 				<strong data-ng-bind="error"></strong>
