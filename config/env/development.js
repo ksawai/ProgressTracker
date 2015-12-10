@@ -2,7 +2,7 @@ var port = 1337;
 
 module.exports = {
 	port: port,
-	db: 'mongodb://localhost/todos',
+	db: 'mongodb://dummyUser:dummyPassword@ec2-52-11-84-222.us-west-2.compute.amazonaws.com:27017/dummyDB',
 	facebook: {
 		clientID: '513828288756645',
 		clientSecret: '2d7cc991efddb864e9af61f307980b9a',
